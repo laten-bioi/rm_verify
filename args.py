@@ -1,16 +1,13 @@
 import argparse
 
-'''
-This file will be the argparse file once things get more organized into a
-complete pipeline with command line interface.
 
-Potential args
---------------------------------------------
+def get_args():
+    parse = argparse.ArgumentParser(description='Process args for rm_verify')
+    parse.add_argument(
+        '-i', help='Input directory containing element family files')
+    parse.add_argument('-o', help='Outpur directory where results are written')
+    parse.add_argument(
+        '-b', help='Path to blast nucl database for tblastx search')
+    parse.add_argument('-t', default=1, help='Number of threads to use')
 
--i: location of seperated family files from one superfam
--o: dir where to write output may need to make sub dirs in here
-    for different kinds of output
--b: path to blast database
--t: number of threads to use
-
-'''
+    return parse
