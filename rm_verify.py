@@ -3,6 +3,10 @@ import sys
 from args import get_args
 from big_hitter import get_rep_sequences_from_family_files
 
+# would be good to add option to start the run from the clstr files
+# so dont need to redo that everytime when testing
+
+
 def main():
     run_args = get_args()
     rep_seqs = []
