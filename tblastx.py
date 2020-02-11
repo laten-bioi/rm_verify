@@ -23,6 +23,5 @@ def run_tblastx(blastdb, query, evalue=10, threads=1, outfmt=10):
     return call
 
 
-
 def count_tblastx_hits(tblastx_output):
     pass
