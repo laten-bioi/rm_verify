@@ -10,5 +10,10 @@ tblastx command template and args to use
 
 tblastx -db [database name] -query [input file name]
 -out outfile name
-
 '''
+
+def run_tblastx(blastdb, query, evalue=10):
+    pass
+
+def count_tblastx_hits(tblastx_output):
+    pass
