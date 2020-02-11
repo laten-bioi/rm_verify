@@ -12,3 +12,7 @@ To uninstall use
 ```
 pip uninstall fasta_tools
 ```
+You also need to install cd-hit, use the command below.
+```
+sudo apt-get install cd-hit
+```
