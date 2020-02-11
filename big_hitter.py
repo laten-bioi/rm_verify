@@ -50,7 +50,7 @@ def cluster_superfamily_files(super_fam_paths, output_dir):
         # file extension and join it with the output file dir to give a complete
         # outoput file path with no extension. cd-hit then auto adds the .clstr
         # extension onto the output file name given by -o
-        print('Clustering {} of {}'.format(i+1, l))
+        print('Clustering {} of {}'.format(i + 1, l))
         run_cd_hit(output_file, family_file)
         file_map[family_file] = output_file + '.clstr'
 
@@ -122,6 +122,30 @@ def get_rep_sequences_from_family_files(superfam_dir, output_dir):
 
     return rep_seq_list
 
+
+def run_from_clstrs(clstr_dir):
+    '''
+    If the clustering has already been done gather the rep sequences
+    directly without doing any blasting. Directory must contain .clstr files
+    and fasta files they where created from. Naming should be
+
+    if test_file is the fasta test_file.clstr is its clstr file. Folders
+    in the lab drive follow this convention.
+    '''
+    rep_seq_list = []
+    clstr_files = [f for f in os.listdir(clstr_dir) if '.clstr' in f]
+    for cf in clstr_files:
+        fasta_file = os.path.join(clstr_dir, cf.split('.')[0])
+        cf = os.path.join(clstr_dir, cf)
+        # make both paths absolute
+        rep_seq = get_rep_sequence(fasta_file, cf)
+        if rep_seq:  # found the ref seq
+            rep_seq_list.append(rep_seq)
+
+    return rep_seq_list
+
+
+
 # example call
-#a = get_rep_sequences_from_family_files('/home/ethan/Documents/Copia_Intacts_Test',
+# a = get_rep_sequences_from_family_files('/home/ethan/Documents/Copia_Intacts_Test',
 #                      '/home/ethan/Documents/pipe_test')
