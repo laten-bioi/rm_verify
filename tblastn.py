@@ -2,6 +2,7 @@ import subprocess
 from Bio.Seq import Seq
 from Bio import SeqIO
 from fasta_tools import read_as_tuples
+from fasta_tools import write_from_tuple_list
 
 '''
 tblastn command template and args to use
@@ -16,12 +17,14 @@ tblastx -db [database name] -query [input file name]
 '''
 
 
-def run_tblastn(blastdb, query, evalue=10, threads=1, outfmt=10):
+def run_tblastn(blastdb, query, outfile, evalue=10, threads=1, outfmt=10):
     # outfmt 10 for comma seperated file
     cmd = ['tblastn', '-query', query, '-db', blastdb, '-evalue', evalue,
-           '-num_threads', threads, '-outfmt', 10]
+           '-num_threads', threads, '-outfmt', '10', '-out', outfile]
+    cmd = [str(c) for c in cmd]
+    print(' '.join(cmd))
     # command still needs testing
-    call = subprocess.call(cmd, shell=True)
+    call = subprocess.call(cmd)
 
     return call
 
@@ -73,6 +76,7 @@ def convert_rep_seqs_to_longest_orf(rep_seq_fasta):
         rep_proteins.append((rep_header,
                             find_longest_orfs(six_frames(rep_seq))))
 
+    write_from_tuple_list(rep_proteins, rep_seq_fasta)
     return rep_proteins  # returns as a list of tuples
     # original header with the longest orf
 
