@@ -16,3 +16,10 @@ You also need to install cd-hit, use the command below.
 ```
 sudo apt-get install cd-hit
 ```
+# Current State
+
+As of now you should be able to download the clustered files from the lab drive and run the tblastn search with a command that looks like the one below.
+```
+python3 rm_verify.py -c You/path/to/cluster/files -o your/output/directory/path -b /your/path/to/blast/database
+```
+I haven't run the tblastn all the way through since seems like it is going to take a bit to complete. Will try and run it on the server sometime tommorow. 
