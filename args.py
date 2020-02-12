@@ -16,5 +16,8 @@ def get_args():
     if not parse.i and not parse.c:
         print('Must specify -i or -c')
         sys.exit()
+    if not parse.o:
+        print('Must give path to an output directory')
+        sys.exit()
 
     return parse
